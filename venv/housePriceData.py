@@ -1,9 +1,5 @@
-import tensorflow as tf
-import numpy as np
 import pandas as pd
-import warnings
-from sklearn.datasets import fetch_california_housing
-warnings.filterwarnings("ignore")
+import numpy as np
 
 train_df = pd.read_csv('C:/Users/hzp/Desktop/TensorFlow1/housePriceData/train.csv')
 test_df = pd.read_csv('C:/Users/hzp/Desktop/TensorFlow1/housePriceData/test.csv')
@@ -100,12 +96,3 @@ y_train = y_train.fillna(value=0)
 
 print("train.shape = ", x_train.shape)
 print("test.shape = ", x_test.shape)
-
-housing = fetch_california_housing()
-m, n = housing.data.shape
-
-print(m, n)
-
-
-
-
