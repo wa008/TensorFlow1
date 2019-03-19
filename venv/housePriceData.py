@@ -94,5 +94,9 @@ x_train = x_train.fillna(value=0)
 x_test = x_test.fillna(value=0)
 y_train = y_train.fillna(value=0)
 
+x_train = x_train.values
+y_train = y_train.values
+x_test = x_test.values
+
 print("train.shape = ", x_train.shape)
 print("test.shape = ", x_test.shape)
