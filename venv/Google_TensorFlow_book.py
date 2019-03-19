@@ -1,35 +1,20 @@
 import tensorflow as tf
-import numpy as np
-import tkinter
-x = np.ones((8, 1))
-
-x = x.reshape(2,4)
-print(x)
-x = x.reshape(-1, 1)
-print(x)
-
-
-import tensorflow as tf
 from numpy.random import RandomState
 
 batch_size = 1000
 
-w1 = tf.Variable(tf.random_normal([5, 2], stddev = 1, seed = 1))
-w2 = tf.Variable(tf.random_normal([8, 5], stddev = 1, seed = 1))
-w3 = tf.Variable(tf.random_normal([1, 8], stddev = 1, seed = 1))
-b1 = tf.Variable(tf.random_normal([5, 1], stddev = 1, seed = 1))
-b2 = tf.Variable(tf.random_normal([8, 1], stddev = 1, seed = 1))
-b3 = tf.Variable(tf.random_normal([1, 1], stddev = 1, seed = 1))
+w1 = tf.Variable(tf.random_normal([4, 2], stddev = 1, seed = 1))
+w2 = tf.Variable(tf.random_normal([1, 4], stddev = 1, seed = 1))
+b1 = tf.Variable(tf.random_normal([4, 1], stddev = 1, seed = 1))
+b2 = tf.Variable(tf.random_normal([1, 1], stddev = 1, seed = 1))
 
 x = tf.placeholder(tf.float32, shape = (2, None), name = "x_input")
 y_ = tf.placeholder(tf.float32, shape = (None, 1), name = "y_input")
 
-z1 = tf.matmul(w1, x)
-z1 = tf.add(z1, b1)
-z2 = tf.matmul(w2, z1)
-z2 = tf.add(z2, b2)
-z3 = tf.matmul(w3, z2)
-y = tf.add(z3, b3)
+m1 = tf.matmul(w1, x)
+z1 = tf.add(m1, b1)
+m2 = tf.matmul(w2, z1)
+y = tf.add(m2, b2)
 
 cross_entropy = -tf.reduce_mean(y_ * tf.log(tf.clip_by_value(y, 1e-10, 1.0)))
 train_step = tf.train.AdamOptimizer(0.001).minimize(cross_entropy)
